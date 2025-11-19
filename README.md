@@ -1,21 +1,17 @@
-# React + TypeScript + Vite
+I put this project together using React, TypeScript, and Vite. It’s a super lightweight setup with fast hot reloads and some solid linting rules to keep things clean.
+Vite gives you two official React plugins to choose from:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+@vitejs/plugin-react — uses Babel (or oxc with rolldown-vite) for Fast Refresh
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## React Compiler
+@vitejs/plugin-react-swc — uses SWC for Fast Refresh
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
+React Compiler
+I didn’t enable the React Compiler out of the box because it currently slows down both dev and build a bit. If I ever need it, I can just follow the guide here: https://react.dev/learn/react-compiler/installation.
+ESLint Setup
+For better linting (especially with TypeScript), I expanded the ESLint setup so it can catch more issues while I’m working. Here’s the config:
 export default defineConfig([
   globalIgnores(['dist']),
   {
@@ -23,11 +19,11 @@ export default defineConfig([
     extends: [
       // Other configs...
 
-      // Remove tseslint.configs.recommended and replace with this
+      // Moved from tseslint.configs.recommended to these:
       tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
+      // Or stricter rules if needed:
       tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
+      // Optional stylistic rules:
       tseslint.configs.stylisticTypeChecked,
 
       // Other configs...
@@ -41,11 +37,9 @@ export default defineConfig([
     },
   },
 ])
-```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
+React Linting Plugins
+I also added eslint-plugin-react-x and eslint-plugin-react-dom for more React-specific lint rules:
 // eslint.config.js
 import reactX from 'eslint-plugin-react-x'
 import reactDom from 'eslint-plugin-react-dom'
@@ -55,10 +49,9 @@ export default defineConfig([
   {
     files: ['**/*.{ts,tsx}'],
     extends: [
-      // Other configs...
-      // Enable lint rules for React
+      // React rules
       reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
+      // React DOM rules
       reactDom.configs.recommended,
     ],
     languageOptions: {
@@ -70,4 +63,6 @@ export default defineConfig([
     },
   },
 ])
-```
+
+
+If you want, I can make it even more casual, add setup instructions, or help you restructure it completely.
